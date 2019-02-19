@@ -1,5 +1,4 @@
 import React from "react";
-import Gallery from "./gallery";
 
 export default class VideoThumb extends React.Component {
 	constructor(props) {
