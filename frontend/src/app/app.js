@@ -1,15 +1,23 @@
 import React from "react";
 import HeroVideo from "./components/heroVideo";
-import Gallery from "./components/gallery";
 import SideBar from "./components/sideBar";
+import AboutUsPanel from "./components/aboutUsPanel";
+import CrewGallery from "./components/crewGallery";
+import Gallery from "./components/gallery";
 
 import "./app.css";
 
 const displayContents = {
 	name: "Shed Studio",
 	description:
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nunc quis lorem tincidunt, non mollis sem dictum. Vivamus iaculis venenatis ultrices. Vivamus blandit urna eu sagittis sodales. Praesent fermentum dignissim mi, ac blandit quam congue nec. Donec rhoncus vitae odio quis faucibus. Praesent justo sapien, varius sit amet tempus eget, commodo id libero. Duis non ullamcorper dolor.Aliquam porttitor sem id diam porta, in posuere dolor cursus. Suspendisse potenti. Morbi aliquam diam lectus, id hendrerit odio aliquam quis. Maecenas scelerisque tortor nec felis laoreet accumsan. Aenean eu elit et justo ullamcorper egestas. Vivamus ac consequat sapien. Nunc elementum elit ac turpis luctus, ut sagittis arcu sagittis. Nulla dignissim ante a augue commodo ultrices. Integer dui urna, maximus id rhoncus id, mollis in felis. In ut tellus at libero rutrum iaculis ac a felis. Pellentesque fringilla velit magna. Pellentesque consectetur ac ligula et scelerisque. Curabitur feugiat purus suscipit felis euismod vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed eget dignissim nunc. Nullam feugiat nunc id est euismod tempus.",
-	sideBarCategories: ["about us", "portfolio", "contacts"],
+		"a brand asset production studio, producing the vision and vibe of a brand, as well as developing internal and external assets in order to attract more clients, keep teams aligned to their purpose, and destroying the minds of their enemies.",
+	sideBarCategories: ["about us", "portfolio", "contact"],
+	crewMembers: [
+		{ avatar: "", description: "Yolo" },
+		{ avatar: "", description: "Yolo" },
+		{ avatar: "", description: "Yolo" },
+		{ avatar: "", description: "Yolo" }
+	],
 	social: {
 		facebook: "https://facebook.com",
 		instagram: "https://instagram.com",
@@ -41,16 +49,27 @@ const displayContents = {
 	}
 };
 
+const containerStyle = {
+	display: "flex",
+	flexDirection: "column",
+	width: "calc(100vw - 14em",
+	float: "right"
+};
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { ...displayContents, threshold: null };
+		this.state = {
+			...displayContents,
+			threshold: window.innerHeight,
+			sectionReached: ""
+		};
 
 		this.changeThreshold = this.changeThreshold.bind(this);
+		this.reportSectionReached = this.reportSectionReached.bind(this);
 	}
 
 	changeThreshold(threshold) {
-		console.log("playing");
 		this.setState(oldstate => {
 			console.log(oldstate);
 			if (oldstate.threshold === null) {
@@ -59,6 +78,21 @@ class App extends React.Component {
 				console.log("fail");
 			}
 		});
+	}
+
+	reportSectionReached(name) {
+		console.log(name);
+		if (this.setState.sectionReached !== name) {
+			this.setState({
+				sectionReached: name
+			});
+		}
+	}
+
+	scrollToSection(marker) {
+		console.log(marker);
+		let target = document.getElementById(`${marker}Marker`);
+		target.scrollIntoView({ behavior: "smooth", block: "start" });
 	}
 
 	render() {
@@ -72,8 +106,19 @@ class App extends React.Component {
 				<SideBar
 					sections={this.state.sideBarCategories}
 					threshold={this.state.threshold}
+					sectionReached={this.state.sectionReached}
+					scrollToSection={this.scrollToSection}
 				/>
-				<div style={{ height: "20000px" }} />
+				<div className="container" style={containerStyle}>
+					<div id="aboutusMarker">
+						<AboutUsPanel
+							description={this.state.description}
+							reportSectionReached={p => this.reportSectionReached(p)}
+						/>
+
+						<CrewGallery crew={this.state.crewMembers} />
+					</div>
+				</div>
 			</div>
 		);
 	}

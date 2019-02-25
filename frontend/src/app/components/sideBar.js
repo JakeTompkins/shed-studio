@@ -6,10 +6,9 @@ import ChangingLogo from "./changingLogo";
 
 const contentStyle = {
 	width: "14em",
-	height: "30em",
+	height: "24em",
 	display: "flex",
 	flexDirection: "column",
-	justifyContent: "space-between",
 	alignItems: "center"
 };
 
@@ -24,7 +23,6 @@ const sideBarStyle = {
 };
 
 export default function SideBar(props) {
-	console.log(props.sections);
 	return (
 		<div id="sideBar" style={sideBarStyle}>
 			<div className="content" style={contentStyle}>
@@ -35,6 +33,8 @@ export default function SideBar(props) {
 							title={section}
 							threshold={props.threshold}
 							key={section}
+							sectionReached={props.sectionReached}
+							scrollToSection={props.scrollToSection}
 						/>
 					);
 				})}

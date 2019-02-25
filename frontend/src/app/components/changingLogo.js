@@ -2,7 +2,8 @@ import React from "react";
 
 const logoStyle = {
 	height: "8em",
-	width: "8em"
+    width: "8em",
+    marginBottom: "2em"
 };
 
 export default class ChangingLogo extends React.Component {
@@ -17,9 +18,6 @@ export default class ChangingLogo extends React.Component {
 		var bottomBound =
 			document.getElementById("changingLogo").getBoundingClientRect().bottom +
 			window.scrollY;
-
-		console.log("Threshold " + this.props.threshold);
-		console.log("logo bound " + bottomBound);
 		if (bottomBound > this.props.threshold) {
 			this.setState({
 				changedState: true

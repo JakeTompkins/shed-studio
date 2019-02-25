@@ -1,11 +1,23 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica" "Roboto";
-  position: relative;
+@font-face {
+	font-family: "Source_Sans_Pro";
+	src: url("./app/assets/Fonts/SourceSansPro-Bold.woff") format("woff");
+	font-weight: bold;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@font-face {
+	font-family: "Source_Sans_Pro";
+	src: url("./app/assets/Fonts/SourceSansPro-Regular.woff") format("woff");
+}
+
+@font-face {
+	font-family: "Source_Sans_Pro";
+	src: url("./app/assets/Fonts/SourceSansPro-Light.woff") format("woff");
+	font-weight: lighter;
+}
+
+body {
+	font-family: "Source_Sans_Pro";
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+	margin: 0;
 }
