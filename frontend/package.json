@@ -10,7 +10,7 @@
     "react-dom": "^16.6.3",
     "react-hero-video": "^0.1.1",
     "react-player": "^1.7.0",
-    "react-scripts": "2.1.1",
+    "react-scripts": "5.0.1",
     "react-youtube": "^7.8.0",
     "video-react": "^0.13.1"
   },
